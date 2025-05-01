@@ -47,30 +47,90 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@NotBlank(message="Fullname cannot be null")
+	@NotBlank(message = "Full name is required")
 	private String fullName;
-	
-//	@NotNull(message="Username cannot be null")
+
+	@NotBlank(message = "Username is required")
 	private String usernname;
-		
-	@NotNull(message="Password cannot be null")
-	private String password;
-	
-	@Email(message="Email should be valid")
-	@NotNull(message = "Email cannot be null")
+
+//	@Pattern(
+//		    regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+//		    message = "Password must be at least 8 characters and include uppercase, lowercase, number, and special character"
+//		)
+		@NotNull(message = "Password cannot be null")
+		private String password;
+
+
+	@Email(message = "Invalid email format")
+	@NotBlank(message = "Email is required")
 	private String email;
 
-	@NotNull(message="Mobile number cannot be null")
-	private  long mobileNo;
-	
-	@NotNull(message="Date of birth cannot be null")
+	@NotNull(message = "Mobile number is required")
+	//@Pattern(regexp = "^\\d{10}$", message = "Mobile number must be 10 digits")
+	@Column(unique = true)
+	private long mobileNo;
+
+	@NotNull(message = "Date of birth is required")
 	private LocalDate dateOfBirth;
 	
-	@NotNull(message="Aadhar number cannot be null")
-	private long aadharNo;
-	
-	@NotNull(message="gender cannot be null")
+	@NotNull(message = "Aadhar number cannot be null")
+	@Pattern(regexp = "\\d{12}", message = "Aadhar number must be 12 digits")
+	private String aadharNo;
+
+	@NotBlank(message = "Gender is required")
 	private String gender;
+
+	@NotBlank(message = "Position is required")
+	private String position;
+
+	@NotBlank(message = "Department is required")
+	private String department;
+
+	@NotNull(message = "Salary is required")
+	private Double salary;
+
+//	@Pattern(regexp = "^\\d{10}$", message = "Telephone must be 10 digits")
+	private Long telephone;
+
+	@Pattern(regexp = "[A-Z]{5}[0-9]{4}[A-Z]{1}", message = "Invalid PAN format")
+	private String pan;
+
+	@NotBlank(message = "Address is required")
+	private String address;
+
+	@NotBlank(message = "State is required")
+	private String state;
+
+	@NotBlank(message = "City is required")
+	private String city;
+
+	@NotBlank(message = "Village is required")
+	private String village;
+
+	@Pattern(regexp = "^\\d{6}$", message = "PIN code must be 6 digits")
+	private String pin;
+
+	@NotBlank(message = "Bank account holder name is required")
+	private String holderName;
+
+	@NotBlank(message = "Bank name is required")
+	private String bankName;
+
+	@NotBlank(message = "Account number is required")
+	@Pattern(regexp = "^\\d{9,18}$", message = "Account number must be between 9 and 18 digits")
+	private String accountNumber;
+
+	@NotBlank(message = "Branch name is required")
+	private String branchName;
+
+	@NotBlank(message = "IFSC code is required")
+	@Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$", message = "Invalid IFSC code format")
+	private String ifscCode;
+
+	private String img; 
+
+	
+	
 
 	
 	

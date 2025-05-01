@@ -10,8 +10,8 @@ import com.hrms.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByEmail(String email);
-    User findByMobileNo(long mobileNo);
-    User findByAadharNo(long aadharNo);
+//    User findByMobileNo(long mobileNo);
+//    User findByAadharNo(long aadharNo);
 
 
 }

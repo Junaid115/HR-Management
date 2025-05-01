@@ -14,11 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hrms.entity.User;
 import com.hrms.service.UserService;
 import com.hrms.util.ApiResponse;
+
+import jakarta.validation.Valid;
 
 
 
@@ -30,10 +35,13 @@ public class UserController {
 	private UserService userService;
 	 
 	@PostMapping("/create")
-	private ResponseEntity<ApiResponse> create(@RequestBody User user){
-		System.out.println(user);
-		return new ResponseEntity<ApiResponse>(userService.create(user),HttpStatus.CREATED);
+	public ResponseEntity<ApiResponse> createUser(
+		    @RequestPart("user") @Valid User user,
+	        @RequestPart("image") MultipartFile imageFile) {
+	    
+	    return new ResponseEntity<>(userService.create(user, imageFile), HttpStatus.CREATED);
 	}
+
 	
 	@PutMapping("/")
 	private ResponseEntity<ApiResponse> update(@RequestBody User user){
